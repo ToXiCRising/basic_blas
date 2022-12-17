@@ -7,7 +7,7 @@ mod level3;
 fn main() {
     println!("Basic implementation of BLAS");
     let a = 2.0;
-    let b = vec![1.0,2.0,3.0];
+    let b = vec![1.0, 2.0, 3.0];
     let c = vec![4.0, 3.0, 5.0];
     let r1 = sv_mult(a.clone(), b.clone());
     let r2 = vv_add(b.clone(), c.clone());
