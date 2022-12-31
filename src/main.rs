@@ -1,7 +1,7 @@
 use crate::level1::{sv_mult, crossproduct, vv_add, dotproduct, norm};
 use crate::level2::{sm_mult, mv_mult};
-use crate::level3::{mm_mult, frobenius_norm};
-use crate::helper_functions::{print_vector, print_matrix, fill_matrix};
+use crate::level3::{mm_mult, frobenius_norm, mm_add};
+use crate::helper_functions::{print_vector, print_matrix, fill_matrix, diag_matrix};
 
 mod level1;
 mod level2;
@@ -33,12 +33,20 @@ fn main() {
     let r9 = mm_mult(f.clone(), g.clone());
     let r10 = frobenius_norm(f.clone()); 
 
+    let sys_size = 9;
+    let sys_matrix = mm_add(mm_add(diag_matrix(sys_size, -2.0, 0), 
+                                                        diag_matrix(sys_size, 1.0, 1)), 
+                                                        diag_matrix(sys_size, 1.0, -1));
+
+
     println!("Tests for level 1");
     println!("a = {a}");
     print!("b = ");
     print_vector(b);
     print!("c = ");
     print_vector(c);
+
+    print_matrix(sys_matrix);
 
     print!("Multiplication with scalar a*b: r1 = ");
     print_vector(r1);
