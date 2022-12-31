@@ -22,6 +22,23 @@ pub fn mm_mult(matrix1: MatF64, matrix2: MatF64) -> MatF64{
     return result;
 }
 
+pub fn mm_add(matrix1: MatF64, matrix2: MatF64) -> MatF64{
+    let r1 = matrix1.len();
+    let c1 = matrix1[0].len();
+    let r2 = matrix2.len();
+    let c2 = matrix2[0].len();
+    check_core_dimension(c1, c2);
+    check_core_dimension(r1, r2);
+
+    let mut result = vec![vec![0.0; c1]; r1];
+    for i in 0..r1{
+        for j in 0..r2{
+            result[i][j] = matrix1[i][j] + matrix2[i][j];
+        }
+    }
+    return result;
+}
+
 pub fn frobenius_norm(matrix: MatF64) -> f64{
     let rows = matrix.len();
     let columns = matrix[0].len();
