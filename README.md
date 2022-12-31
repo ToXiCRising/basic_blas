@@ -4,3 +4,5 @@
 
 Split into three levels, each having its own .rs-file. 
 Also contains a few simple tests in main.
+
+Basically a first try at coding in Rust.
