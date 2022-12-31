@@ -26,10 +26,21 @@ pub fn fill_matrix(rows: usize, columns: usize, fill: &str) -> MatF64{
 /**Creates a diagonal nxn matrix with arguement on given diagonal.
 * diag_argument: 0 -> main diagonal, 1 -> first upper diagonal, -1 -> first lower diagonal...
 */
-pub fn diag_matrix(n_size: usize, value: f64, diag_argument: int) -> MatF64{
+pub fn diag_matrix(n_size: usize, value: f64, diag_argument: i32) -> MatF64{
+    if diag_argument.abs() >= n_size as i32{
+        panic!("Can't create a matrix with a diagonal greater than the size of the matrix!")
+    }
+
     let mut matrix = vec![vec![0.0; n_size]; n_size];
-    for i in diag_argument.abs()..n_size-diag_argument.abs(){
-        matrix[i+diag_argument][i+diag_argument] = value;
+    if diag_argument >= 0{
+        for i in 0..n_size as i32 - diag_argument.abs(){
+            matrix[(i) as usize][(i+diag_argument) as usize] = value;
+        }
+    }
+    else{
+        for i in 0..n_size as i32 - diag_argument.abs(){
+            matrix[(i-diag_argument) as usize][i as usize] = value;
+        }
     }
     return matrix;
 }
