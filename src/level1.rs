@@ -1,11 +1,11 @@
 use crate::helper_functions::{check_core_dimension};
 
-pub fn sv_mult(scalar: f64, vector: Vec<f64>) -> Vec<f64>{
-    let mut result = Vec::new();
-    for i in &vector{
-        result.push(scalar * i)
+pub fn sv_mult(scalar: f64, mut vector: Vec<f64>) -> Vec<f64>{
+    let l = vector.len();
+    for i in 0..l{
+        vector[i] *= scalar;
     }
-    return result;
+    return vector;
 }
 
 pub fn vv_add(vector1: Vec<f64>, vector2: Vec<f64>) -> Vec<f64>{
@@ -37,7 +37,7 @@ pub fn crossproduct(vector1: Vec<f64>, vector2: Vec<f64>) -> Vec<f64>{
     check_core_dimension(l, l2);
     if l != 3{
         panic!("Crossproduct is only defined for vectors of dimension (3)!
-        Given vector has dimesion {}", l)
+        Given vector has dimesion ({})", l)
     }
     let mut result = Vec::new();
     for i in 0..l{
@@ -48,10 +48,10 @@ pub fn crossproduct(vector1: Vec<f64>, vector2: Vec<f64>) -> Vec<f64>{
 
 /// Euclidean norm of a vector.
 pub fn norm(vector: Vec<f64>) -> f64{
-    let mut inner = 0.0;
+    let mut _inner = 0.0;
     for i in &vector{
-        inner += f64::powf(*i, 2.0);
+        _inner += f64::powf(*i, 2.0);
     }
-    let result = inner.sqrt();
+    let result = _inner.sqrt();
     return result;
 }
