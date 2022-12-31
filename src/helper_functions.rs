@@ -22,6 +22,18 @@ pub fn fill_matrix(rows: usize, columns: usize, fill: &str) -> MatF64{
     return matrix;
 }
 
+//TODO: needs testing!
+/**Creates a diagonal nxn matrix with arguement on given diagonal.
+* diag_argument: 0 -> main diagonal, 1 -> first upper diagonal, -1 -> first lower diagonal...
+*/
+pub fn diag_matrix(n_size: usize, value: f64, diag_argument: int) -> MatF64{
+    let mut matrix = vec![vec![0.0; n_size]; n_size];
+    for i in diag_argument.abs()..n_size-diag_argument.abs(){
+        matrix[i+diag_argument][i+diag_argument] = value;
+    }
+    return matrix;
+}
+
 //------Output of LA-objects------//
 pub fn print_vector(vector: Vec<f64>){
     let l = vector.len();
